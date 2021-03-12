@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>影院业务管理系统</title>
+<!-- 网页图标 -->
+<link rel="icon" href="../src/admin_icon.png" sizes="32x32">
+<!-- 网页信息 -->
+<meta charset="UTF-8">
+<!-- 编码设置 -->
+<meta http-equiv="keywords" content="购票,电影,313">
+<meta http-equiv="description" content="313电影-一网打尽好电影">
+<!-- css文件引入 -->
+<link rel="stylesheet" type="text/css"
+	href="../css/AdminPage_Frame&Index.css">
+<!-- 内部css -->
+<style type="text/css">
+#showContainer {
+	background: none;
+	text-align: center;
+}
+
+#showContainer form {
+	width: 100%;
+	height: 50%;
+	padding-top: 40px;
+}
+
+.targetuser {
+	margin-top: 30px;
+	font-size: 20px;
+}
+
+#showContainer table {
+	text-align: center;
+	font-size: 20px;
+	width: 40%;
+	margin: 10px auto;
+	border: 1px solid black;
+}
+
+#button {
+	width: 200px;
+	height: 40px;
+}
+</style>
+<!-- js引入 -->
+<script type="text/javascript" src="../js/jquery-3.4.1.js"></script>
+<!-- 内部js -->
+<script type="text/javascript">
+        function addFilmArrangement() {
+        	//获取拍排片信息
+            let film_name = $("#film_name").val();
+            let film_playtime = $("#film_playtime").val();
+            let film_playroom = $("#film_playroom").val();
+            let film_price = $("#film_price").val();
+            if (film_name==="" || film_playtime==="" || film_playroom==="" || film_price===""){
+            	alert("带星号内容为必填！");
+            	return;
+            }
+            let jsonStr = {
+                film_name: film_name,
+                film_playtime: film_playtime,
+                film_playroom: film_playroom,
+                film_price: film_price,
+            };
+            $.ajax({
+                url:"admin_add_arrange",
+                type:"post",
+                data:jsonStr,
+                dataType:"json",
+                success:function (data) {
+                	console.log("添加拍片信息结果：");
+                    console.log(data);
+                    alert("添加成功!");
+                    //添加成功，跳转到所有排片信息页面
+                    $(window).attr("location", "AdminPage_CheckFilmArrangement.html");
+                },
+                error:function (error) {
+                    alert("----ajax请求回调出错函数！----\n"+error.responseText);
+                }
+            });
+        }
+    </script>
+</head>
+<!-- 网页主体 -->
+<body>
+	<div id="basic">
+		<!-- 网页头部 -->
+		<div id="head">
+			<p id="titleText">影院业务管理系统</p>
+			<div id="headToolBar">
+				<a href="AdminPage_Frame&Index.html">首页</a> &nbsp;&nbsp;<a href="#">您好，Admin！</a>
+				&nbsp;&nbsp;<a href="AdminPage_Login.html">退出</a>
+			</div>
+		</div>
+		<!-- 导航栏 -->
+		<div id="body">
+			<div id="navBar">
+				<ul id="functions">
+					<li class="non-active"><a
+						href="AdminPage_CheckFilmArrangement.html">查看排片信息</a></li>
+					<li class="non-active"><a href="AdminPage_CheckUserInfo.html">查看用户信息</a></li>
+					<li class="non-active"><a href="AdminPage_CheckFilmInfo.html">查看影片信息</a></li>
+					<li class="non-active"><a href="AdminPage_AddFilm.html">添加影片信息</a></li>
+					<li class="active"><a href="AdminPage_AddFilmArrangement.html">添加排片信息</a></li>
+				</ul>
+			</div>
+			<!-- 内容显示区域 -->
+			<div id="showContainer">
+				<form>
+					<span class="targetuser">请输入电影名*：</span> <input type="text"
+						class="targetuser" placeholder=" 电影名" id="film_name"><br>
+					<span class="targetuser">请选择开场时间*：</span> <input
+						type="datetime-local" class="targetuser" id="film_playtime"><br>
+					<span class="targetuser">请选择影厅*：</span> <select class="targetuser"
+						id="film_playroom">
+						<option value="1">普通1号厅</option>
+						<option value="2">普通2号厅</option>
+						<option value="3">普通3号厅</option>
+						<option value="4">普通4号厅</option>
+						<option value="5">大屏激光厅</option>
+						<option value="6">太空舱VIP厅</option>
+						<option value="7">杜比音效厅</option>
+					</select><br> <span class="targetuser">请输入票价*：</span> <input
+						type="text" placeholder="票价" class="targetuser" id="film_price"><br>
+					<input type="button" id="button" class="targetuser" value="添加"
+						onclick="addFilmArrangement()">
+				</form>
+			</div>
+		</div>
+		<!-- 页脚 -->
+		<div id="footer">
+			<p>313文化传媒有限公司</p>
+			<p>联系我们：1479351399@qq.com</p>
+			<p>Copyright © 2019 313电影 All Rights Reserved.</p>
+		</div>
+	</div>
+</body>
+</html>

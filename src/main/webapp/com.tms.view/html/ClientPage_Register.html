@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>313电影-注册</title>
+<!-- 网页图标 -->
+<link rel="icon" href="../src/logo.png" sizes="32x32">
+<!-- 网页信息 -->
+<meta charset="UTF-8">
+<!-- 编码设置 -->
+<meta http-equiv="keywords" content="购票,电影,313">
+<meta http-equiv="description" content="313电影-一网打尽好电影">
+<!-- 内部css -->
+<style type="text/css">
+body {
+	margin: 0;
+	padding: 0;
+}
+
+#header {
+	width: 100%;
+	height: 70px;
+	background: white;
+	margin: 0 auto;
+	padding: 0;
+}
+
+#main {
+	width: 100%;
+	height: 300px;
+	background: white;
+	margin: 30px auto;
+	padding: 0
+}
+
+#right {
+	width: 30%;
+	height: 100%;
+	float: left;
+	margin: 0;
+	padding: 0;
+	line-height: 100%
+}
+
+#left {
+	width: 20%;
+	height: 100%;
+	float: left;
+	margin: 0;
+	padding: 0;
+	text-align: right;
+}
+
+#left1 {
+	width: 40%;
+	height: 100%;
+	float: left;
+	margin: 0;
+	padding: 0;
+	text-align: right;
+}
+
+#hh {
+	width: 49%;
+	height: 100%;
+	float: left;
+	margin: 0;
+	padding: 0
+}
+
+.h1 {
+	width: 26%;
+	height: 35px;
+	border: 1px solid black;
+	display: inline-block;
+	margin: 0;
+	padding: 0
+}
+
+#h2 {
+	width: 26%;
+	height: 35px;
+	background: brown;
+	display: inline-block;
+	margin: 0;
+	padding: 0
+}
+
+.none {
+	width: 25%;
+	height: 20px;
+	margin: 0;
+	padding: 0;
+	display: block;
+}
+
+.b2 {
+	width: 100%;
+	border: none;
+	height: 34px;
+	margin: 0;
+	padding: 0;
+}
+
+#b3 {
+	width: 100%;
+	border: none;
+	height: 34px;
+	margin: 0;
+	padding: 0;
+	background-color: #e3282d;
+	color: white;
+	cursor: pointer;
+}
+
+h4 {
+	color: brown;
+	margin: 0;
+	padding: 0;
+}
+
+.title {
+	display: inline;
+	line-height: 60px;
+	float: left;
+	color: #ec454a;
+	margin: 0;
+	padding: 0;
+}
+
+.r1 {
+	width: 98%;
+	height: 35px; display：inline-block;
+	margin: 0;
+	padding: 0;
+	text-align: right;
+	line-height: 35px;
+	margin: 0;
+	padding: 0;
+}
+</style>
+<!-- js引入 -->
+<script type="text/javascript" src="../js/jquery-3.4.1.js"></script>
+<!-- 内部js -->
+<script type="text/javascript">
+	//获取注册信息发送到后端进行注测验证
+	function validator() {
+		let user_number = $("#user_number").val();
+		let passwd = $("#passwd").val();
+		let spasswd = $("#spasswd").val();
+		let phonenumber = $("#phonenumber").val();
+		if (user_number == null || user_number === "") {
+			alert("用户名不能为空！");
+			$("#user_number").focus();
+		} else if (phonenumber == null || phonenumber === "") {
+			alert("电话号码不能为空！");
+			$("#phonenumber").focus();
+		} else if (phonenumber.length != 11) {
+			alert("电话号码必须为11位！");
+			$("#phonenumber").focus();
+		} else if (passwd == null || passwd === "") {
+			alert("密码不能为空！");
+			$("#passwd").focus();
+		} else if (passwd.length != 6) {
+			alert("密码必须为6位！");
+			$("#passwd").focus();
+		} else if (spasswd != passwd) {
+			alert("两次输入的密码不同！");
+			$("#spasswd").focus();
+		} else {
+			$.ajax({
+				url : "ctrl_register",
+				type : "post",
+				data : {
+					user_number : user_number,
+					user_password : passwd,
+					phone_number : phonenumber
+				},
+				dataType : "json",
+				success : function(data) {
+					console.log("注册验证结果：");
+					console.log(data);
+					let result = data.toString();
+					if (result === "1") {
+						//注册成功，提示用户是否立即登录，立即登录则重定向至登录页面
+						alert("注册成功！");
+						let choice = confirm("是否立即登录？");
+						if (choice === true)
+							$(window).attr("location", "ClientPage_Login.html");
+					} else if (result === "2") {
+						alert("该手机号已被注册！");
+						$("#phonenumber").focus();
+					} else if (result === "0") {
+						alert("该用户名已被注册！");
+						$("#user_number").focus();
+					} else {
+						alert("校验结果出错！");
+					}
+				},
+				error : function(error) {
+					alert("----ajax请求回调出错函数！----\n" + error.responseText);
+				}
+			});
+		}
+	}
+</script>
+</head>
+<body>
+	<div id="header">
+		<div id="left"></div>
+		<div id="right">
+			<img class="title" src="../src/header_logo.png" width="60"
+				height="60">
+			<h1 class="title">
+				<span style="font-family: 华文新魏; ">313电影</span>
+			</h1>
+		</div>
+	</div>
+	<hr width="99.9%" size="2px" color="#ec454a">
+	<div id="main">
+		<div id="left1">
+			<div class="r1">账号</div>
+			<div class="none"></div>
+			<div class="r1">联系电话</div>
+			<div class="none"></div>
+			<div class="r1">输入密码</div>
+			<div class="none"></div>
+			<div class="r1">确认密码</div>
+		</div>
+		<div id="hh">
+			<form>
+				<div class="h1">
+					<input type="text" class="b2" id="user_number" placeholder=" 请输入账号">
+				</div>
+				<div class="none"></div>
+				<div class="h1">
+					<input type="text" class="b2" id="phonenumber"
+						placeholder=" 请输入联系电话">
+				</div>
+				<div class="none"></div>
+				<div class="h1">
+					<input type="password" class="b2" id="passwd" placeholder=" 请输入密码">
+				</div>
+				<div class="none"></div>
+				<div class="h1">
+					<input type="password" class="b2" id="spasswd" placeholder=" 确认密码">
+				</div>
+				<div class="none"></div>
+				<div id="h2">
+					<input type="button" id="b3" value="注册" onclick="validator()">
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<!--允许动态调用方法，通配符+占位符组合，必须加上这行代码-->
+	<constant name="struts.enable.DynamicMethodInvocation" value="true"/>
+	<constant name="struts.devMode" value="false"/>
+
+	<!-- struts查询指定action请求时有如下规则：
+        例如，当action请求uri为/com.tms.view/html/ctrl_search时，控制器先在命名空间为/com.tms.view/html的包中查找名为ctrl_search的action，
+        如果该action存在，则由该action处理该请求，否则，控制器直接到默认命名空间下的包中寻找名为ctrl_search的action，找到则交由处理，否则就会报错。
+        请求uri不会按目录逐层查找，若在action前的命名空间中没找到则会直接到默认命名空间
+    -->
+    <!-- 该包的命名空间为默认命名空间 -->
+    <package name="demo" extends="struts-default" namespace="/">
+		<global-allowed-methods>regex:.*</global-allowed-methods>
+		<action name="ctrl_*" class="com.tms.ctrl.User_Controller" method="{1}"/>
+		<action name="admin_*" class="com.tms.ctrl.Admin_Controller" method="{1}"/>
+    </package>
+</struts>

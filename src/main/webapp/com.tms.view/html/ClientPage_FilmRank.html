@@ -1,0 +1,477 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>313电影-一网打尽好电影</title>
+<!-- 网页图标 -->
+<link rel="icon" href="../src/logo.png" sizes="32x32">
+<!-- 网页信息 -->
+<meta charset="UTF-8">
+<!-- 编码设置 -->
+<meta http-equiv="keywords" content="购票,电影,313">
+<meta http-equiv="description" content="313电影-一网打尽好电影">
+<!-- css文件引入 -->
+<link rel="stylesheet" type="text/css" href="../css/frame.css">
+<!-- 内部css -->
+<style type="text/css">
+.subnav {
+	background-color: #47464a;
+	height: 60px;
+	width: 100%;
+	min-width: 1200px;
+	text-align: center;
+}
+
+.subnav .navbar {
+	display: inline-block;
+	overflow: hidden;
+}
+
+.subnav li, .subnav ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.subnav .navbar li {
+	display: inline-block;
+	float: left;
+}
+
+ul {
+	display: block;
+	list-style-type: disc;
+	margin-block-start: 1em;
+	margin-block-end: 1em;
+	margin-inline-start: 0;
+	margin-inline-end: 0;
+	padding-inline-start: 40px;
+}
+
+.subnav .navbar li .active {
+	color: #ef4238;
+	position: relative;
+	cursor: default;
+}
+
+.subnav .navbar li a {
+	display: block;
+	font-size: 16px;
+	color: #999;
+	height: 60px;
+	line-height: 60px;
+	padding: 0 40px;
+}
+
+a {
+	text-decoration: none;
+	background-color: transparent;
+}
+
+.wrapper {
+	overflow: hidden;
+}
+
+.main {
+	width: 950px;
+	margin: 70px auto 0 auto;
+}
+
+.board-wrapper {
+	margin-top: 40px;
+}
+
+dl {
+	display: block;
+	margin-block-start: 1em;
+	margin-block-end: 1em;
+	margin-inline-start: 0;
+	margin-inline-end: 0;
+}
+
+.board-wrapper dd {
+	margin-bottom: 30px;
+	font-size: 0;
+	position: relative;
+	overflow: hidden;
+}
+
+dd {
+	display: block;
+	margin-inline-start: 40px;
+}
+
+.board-index {
+	display: inline-block;
+	width: 50px;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	background: #f7f7f7;
+	font-size: 18px;
+	color: #999;
+	font-weight: 700;
+	position: absolute;
+	left: 0;
+	top: 85px;
+}
+
+.board-index-1 {
+	background: url("../src/rank_first.png");
+	font-size: 0;
+}
+
+.board-index-2 {
+	background: url("../src/rank_second.png");
+	font-size: 0;
+}
+
+.board-index-3 {
+	background: url("../src/rank_third.png");
+	font-size: 0;
+}
+
+i {
+	font-style: italic;
+}
+
+.board-wrapper dd {
+	margin-bottom: 30px;
+	font-size: 0;
+	position: relative;
+	overflow: hidden;
+}
+
+.board-wrapper .image-link {
+	display: inline-block;
+	width: 160px;
+	height: 220px;
+	margin-left: 80px;
+	position: relative;
+	float: left;
+}
+
+a {
+	text-decoration: none;
+}
+
+.board-img {
+	vertical-align: middle;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 160px;
+	height: 230px;
+	padding-top: 20px;
+}
+
+.board-item-main {
+	margin-top: 5%;
+	display: inline-block;
+	width: 680px;
+	margin-left: 30px;
+	height: 219px;
+	float: right;
+	line-height: 219px;
+	border-bottom: 1px solid #e5e5e5;
+}
+
+.board-item-content {
+	display: inline-block;
+	vertical-align: middle;
+	width: 680px;
+	font-size: 0;
+	line-height: 1;
+}
+
+.movie-item-info {
+	font-size: 16px;
+	display: inline-block;
+	width: 420px;
+	vertical-align: middle;
+}
+
+p {
+	display: block;
+	margin-block-start: 1em;
+	margin-block-end: 1em;
+	margin-inline-start: 0;
+	margin-inline-end: 0;
+}
+
+.board-item-content .name a {
+	font-size: 26px;
+	color: #333;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	width: 420px;
+	display: block;
+}
+
+.board-item-content .star {
+	margin-top: 18px;
+	color: #333;
+}
+
+.movie-item-info .star {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.score-num {
+	color: #ffb400;
+}
+
+.movie-item-number {
+	display: inline-block;
+	text-align: right;
+	width: 260px;
+	vertical-align: top;
+	margin-top: 10px;
+	font-size: 16px;
+}
+
+.score-num .score {
+	padding-right: 4px;
+}
+
+.score-num .integer {
+	font-size: 56px;
+	font-weight: 700;
+}
+
+.board-item-content .releasetime {
+	margin-top: 8px;
+	color: #999;
+}
+
+.score-num .fraction {
+	font-size: 26px;
+	font-weight: 700;
+}
+
+dd, dl, h4, li, p, ul {
+	padding: 0;
+	margin: 0;
+}
+
+#basic {
+	width: 100%;
+	height: 3200px; /*整个页面高度----------------------*/
+	border: none;
+}
+
+.container {
+	width: 100%;
+	height: 3180px; /*页面内容高度（其中header占80px）----------------------*/
+	padding-top: 80px;
+	margin: 0 auto;
+}
+</style>
+<!-- js文件引入 -->
+<script type="text/javascript" src="../js/jquery-3.4.1.js"></script>
+<script type="text/javascript" src="../js/frame.js"></script>
+<script type="text/javascript" src="../js/mylib.js"></script>
+<!-- 内部js -->
+<script type="text/javascript">
+        $(document).ready(function () {
+        	//向后端请求按评分排序后的前十部影片信息列表
+            $.ajax({
+                url:"ctrl_ShowFilm_Rank",
+                type:"get",
+                dataType:"json",
+                success:function (data) {
+                	console.log("按评分排序后的前十部电影信息列表：");
+                    console.log(data);
+                    let i = 1;			//计数，输出十部
+                    let html = "";		//动态加载的html
+                    $.each(data, function (key, value) {
+                    	//将电影评分的整数部分的小数部分分开
+                        let score = value.film_score.toString().split(".");;
+                    	let leftScore = score[0];
+                    	let rightScore = score[1];
+                    	//如果评分为整数，则rightScore为undefined，避免此种情况，将其赋值为“0”
+                    	if (rightScore===undefined){
+                    		rightScore = "0";
+                    	}
+                    	//排名第一的影片格式控制，序号显示样式不同
+                        if(i===1){
+                            html += "<dd>" +
+                                "<i class='board-index board-index-1'>"+i+"</i>" +
+                                "<a href='ClientPage_FilmDetails.html?filmName="+value.film_name+"' title='"+value.film_name+"' class='image-link'>" +
+                                "<img src='../src/film_cover/"+value.film_name+".jpg' alt='"+value.film_name+"' class='board-img'/>" +
+                                "</a>" +
+                                "<div class='board-item-main'>" +
+                                "<div class='board-item-content'>" +
+                                "<div class='movie-item-info'>" +
+                                "<p class='name'>" +
+                                "<a href='ClientPage_FilmDetails.html?filmName="+value.film_name+"' title='"+value.film_name+"'>"+value.film_name+"</a>" +
+                                "</p>" +
+                                "<p class='star'>主演："+value.starring+"</p>" +
+                                "<p class='releasetime'>上映时间："+value.shelt_time+"</p>" +
+                                "</div>" +
+                                "<div class='movie-item-number score-num'>" +
+                                "<p class='score'>" +
+                                "<i class='integer'>"+leftScore+".</i>" +
+                                "<i class='fraction'>"+rightScore+"</i>" +
+                                "</p>" +
+                                "</div>" +
+                                "</div>" +
+                                "</div>" +
+                                "</dd>";
+                        }else if(i===2){//排名第二的影片格式控制，序号显示样式不同
+                            html += "<dd>" +
+                                "<i class='board-index board-index-2'>"+i+"</i>" +
+                                "<a href='ClientPage_FilmDetails.html?filmName="+value.film_name+"' title='"+value.film_name+"' class='image-link'>" +
+                                "<img src='../src/film_cover/"+value.film_name+".jpg' alt='"+value.film_name+"' class='board-img'/>" +
+                                "</a>" +
+                                "<div class='board-item-main'>" +
+                                "<div class='board-item-content'>" +
+                                "<div class='movie-item-info'>" +
+                                "<p class='name'>" +
+                                "<a href='ClientPage_FilmDetails.html?filmName="+value.film_name+"' title='"+value.film_name+"'>"+value.film_name+"</a>" +
+                                "</p>" +
+                                "<p class='star'>主演："+value.starring+"</p>" +
+                                "<p class='releasetime'>上映时间："+value.shelt_time+"</p>" +
+                                "</div>" +
+                                "<div class='movie-item-number score-num'>" +
+                                "<p class='score'>" +
+                                "<i class='integer'>"+leftScore+".</i>" +
+                                "<i class='fraction'>"+rightScore+"</i>" +
+                                "</p>" +
+                                "</div>" +
+                                "</div>" +
+                                "</div>" +
+                                "</dd>";
+                        }else if(i===3){//排名第三的影片格式控制，序号显示样式不同
+                            html += "<dd>" +
+                                "<i class='board-index board-index-3'>"+i+"</i>" +
+                                "<a href='ClientPage_FilmDetails.html?filmName="+value.film_name+"' title='"+value.film_name+"' class='image-link'>" +
+                                "<img src='../src/film_cover/"+value.film_name+".jpg' alt='"+value.film_name+"' class='board-img'/>" +
+                                "</a>" +
+                                "<div class='board-item-main'>" +
+                                "<div class='board-item-content'>" +
+                                "<div class='movie-item-info'>" +
+                                "<p class='name'>" +
+                                "<a href='ClientPage_FilmDetails.html?filmName="+value.film_name+"' title='"+value.film_name+"'>"+value.film_name+"</a>" +
+                                "</p>" +
+                                "<p class='star'>主演："+value.starring+"</p>" +
+                                "<p class='releasetime'>上映时间："+value.shelt_time+"</p>" +
+                                "</div>" +
+                                "<div class='movie-item-number score-num'>" +
+                                "<p class='score'>" +
+                                "<i class='integer'>"+leftScore+".</i>" +
+                                "<i class='fraction'>"+rightScore+"</i>" +
+                                "</p>" +
+                                "</div>" +
+                                "</div>" +
+                                "</div>" +
+                                "</dd>";
+                        }else{//排名第四及以后的影片格式控制，序号显示样式相同
+                            html += "<dd>" +
+                                "<i class='board-index'>"+i+"</i>" +
+                                "<a href='ClientPage_FilmDetails.html?filmName="+value.film_name+"' title='"+value.film_name+"' class='image-link'>" +
+                                "<img src='../src/film_cover/"+value.film_name+".jpg' alt='"+value.film_name+"' class='board-img'/>" +
+                                "</a>" +
+                                "<div class='board-item-main'>" +
+                                "<div class='board-item-content'>" +
+                                "<div class='movie-item-info'>" +
+                                "<p class='name'>" +
+                                "<a href='ClientPage_FilmDetails.html?filmName="+value.film_name+"' title='"+value.film_name+"'>"+value.film_name+"</a>" +
+                                "</p>" +
+                                "<p class='star'>主演："+value.starring+"</p>" +
+                                "<p class='releasetime'>上映时间："+value.shelt_time+"</p>" +
+                                "</div>" +
+                                "<div class='movie-item-number score-num'>" +
+                                "<p class='score'>" +
+                                "<i class='integer'>"+leftScore+".</i>" +
+                                "<i class='fraction'>"+rightScore+"</i>" +
+                                "</p>" +
+                                "</div>" +
+                                "</div>" +
+                                "</div>" +
+                                "</dd>";
+                        }
+                        i++;
+                    });
+                    //添加html显示十部电影
+                    $(".container .board-wrapper").append(html);
+                },
+                error:function (error) {
+                    alert("----ajax请求回调出错函数！----\n"+error.responseText);
+                }
+            });
+        });
+    </script>
+</head>
+<!-- 网页主体 -->
+<body>
+	<!-- 基本div -->
+	<div id="basic">
+		<!-- 网页头部 -->
+		<div class="header">
+			<div class="header-inner">
+				<!-- 网页头部logo -->
+				<a href="" class="logo"></a>
+				<!-- 网页头部导航栏 -->
+				<div class="nav">
+					<ul class="navbar">
+						<li><a href="ClientPage_Index.html" class="non-active">首页</a></li>
+						<li><a href="#" class="non-active">电影</a></li>
+						<li><a href="ClientPage_FilmRank.html" class="active">榜单</a></li>
+					</ul>
+				</div>
+				<!-- 网页头部用户信息 -->
+				<div class="user-info">
+					<div class="user-avatar">
+						<img src="../src/user_avatar/avatar_non.png"> <span
+							class="caret"></span>
+						<ul class="user-menu-unlogin">
+							<li><a href="ClientPage_Login.html">登录</a></li>
+						</ul>
+						<ul class="user-menu-login">
+							<li class="text"><a
+								href="ClientPage_PersonalInfo.html?personalInfoType=2">我的订单</a></li>
+							<li class="text"><a
+								href="ClientPage_PersonalInfo.html?personalInfoType=1">基本信息</a></li>
+							<li class="text"><a href="javascript:void(0);"
+								onclick="logout()">退出登录</a></li>
+						</ul>
+					</div>
+				</div>
+				<!-- 网页头部查询 -->
+				<form target="_blank" class="search-form">
+					<input id="kw" class="search" type="search" maxlength="32"
+						placeholder="找影视剧" autocomplete="off"> <input
+						class="submit" type="button" onclick="searchFilm()">
+				</form>
+			</div>
+		</div>
+		<!-- 内容显示区域 -->
+		<div class="container">
+			<div class="subnav">
+				<ul class="navbar">
+					<li><a class="active" href="javascript:void(0);">TOP10榜</a></li>
+				</ul>
+			</div>
+			<div class="content">
+				<div class="wrapper">
+					<div class="main">
+						<dl class="board-wrapper">
+							<!-- 动态生成 -->
+						</dl>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 页脚 -->
+	<div id="footer">
+		<p>313文化传媒有限公司</p>
+		<p>联系我们：1479351399@qq.com</p>
+		<p>Copyright © 2019 313电影 All Rights Reserved.</p>
+	</div>
+	</div>
+</body>
+</html>

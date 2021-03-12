@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>313电影-一网打尽好电影</title>
+<!-- 网页图标 -->
+<link rel="icon" href="../src/logo.png" sizes="32x32">
+<!-- 网页信息 -->
+<meta charset="UTF-8">
+<!-- 编码设置 -->
+<meta http-equiv="keywords" content="购票,电影,313">
+<meta http-equiv="description" content="313电影-一网打尽好电影">
+<!-- css文件引入 -->
+<link rel="stylesheet" type="text/css" href="../css/frame.css">
+<!-- 内部css -->
+<style type="text/css">
+.movie-grid {
+	margin-top: 40px;
+}
+
+.movie-grid .panel {
+	height: 50%;
+	width: 100%;
+}
+
+.panel {
+	margin: 10px auto;
+}
+
+.movie-grid .panel-header {
+	width: 100%;
+}
+
+.panel-header {
+	overflow: hidden;
+	height: 26px;
+	width: 100%;
+	line-height: 26px;
+}
+
+.panel-title {
+	font-size: 26px;
+}
+
+.panel-title-text-more {
+	cursor: pointer;
+	float: right;
+	font-size: 18px;
+}
+
+.panel-title-text-red {
+	color: #e3282d;
+}
+
+.panel-title-text-blue {
+	color: #0083cb;
+}
+
+.panel-content {
+	overflow: auto;
+	width: 100%;
+	height: 560px;
+	margin-top: 20px;
+}
+
+.movie-list {
+	margin: -30px 0 20px -29px;
+}
+
+.movie-list dd {
+	margin: 30px 0 0 30px;
+	display: inline-block;
+	vertical-align: top;
+	position: relative;
+}
+
+.movie-item {
+	position: relative;
+	border: 1px solid #efefef;
+	margin: -1px;
+}
+
+.movie-poster {
+	background-color: #fcfcfc;
+	width: 160px;
+	height: 220px;
+	overflow: hidden;
+	position: relative;
+}
+
+.movie-poster .movie-overlay, .movie-poster img {
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.movie-poster .movie-overlay {
+	height: 100%;
+}
+
+.movie-poster .movie-overlay, .movie-poster img {
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.movie-overlay .movie-info {
+	color: white;
+	background-color: rgba(0.9, 0.9, 0.9, 0.7);
+	position: absolute;
+	bottom: 8px;
+	width: 100%;
+	height: 22px;
+	line-height: 22px;
+}
+
+.movie-score {
+	color: #ffb400;
+	float: right;
+	margin-right: 10px;
+}
+
+.movie-score .integer {
+	font-size: 18px;
+}
+
+.movie-score .fraction {
+	font-size: 14px;
+}
+
+.movie-title-padding {
+	margin-right: 35px;
+}
+
+.movie-title {
+	font-size: 16px;
+	line-height: 22px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	margin: 0 10px;
+}
+
+.movie-detail-strong {
+	height: 39px;
+	line-height: 39px;
+}
+
+.movie-detail {
+	height: 34px;
+	line-height: 34px;
+	text-align: center;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.movie-sale {
+	cursor: pointer;
+}
+
+.movie-sale .active:link {
+	color: black;
+	text-decoration: none;
+	background-color: transparent;
+}
+
+.movie-sale:hover {
+	background-color: #e3282d;
+}
+
+.movie-ver i {
+	display: inline-block;
+}
+
+#basic {
+	width: 100%;
+	height: 1500px; /*整个页面高度----------------------*/
+	border: none;
+}
+
+.container {
+	width: 1200px;
+	height: 1380px; /*页面内容高度（其中header占80px）----------------------*/
+	padding-top: 80px;
+	margin: 0 auto;
+}
+
+li, ul, div, form, a, span, img, input, p, button, select, textarea {
+	margin: 0;
+	padding: 0;
+}
+
+.container div {
+	display: block;
+}
+
+dd, dl, dt, h1, h2, h3, h4, h5, h6, .container li, .container p,
+	.container ul {
+	margin: 0;
+	padding: 0;
+}
+
+dd {
+	display: block;
+	margin-inline-start: 40px;
+}
+
+dl {
+	display: block;
+	margin-block-start: 1em;
+	margin-block-end: 1em;
+	margin-inline-start: 0;
+	margin-inline-end: 0;
+}
+
+.container img {
+	border-style: none;
+}
+
+.container i {
+	font-style: italic;
+}
+
+.container a:-webkit-any-link {
+	color: -webkit-link;
+	cursor: pointer;
+	text-decoration: underline;
+}
+</style>
+<!-- js文件引入 -->
+<script type="text/javascript" src="../js/jquery-3.4.1.js"></script>
+<script type="text/javascript" src="../js/frame.js"></script>
+<script type="text/javascript" src="../js/mylib.js"></script>
+<!-- 内部js -->
+<script type="text/javascript">
+        $(document).ready(function(){
+        	//获取正在上映的电影信息列表
+            $.ajax({
+                url:"ctrl_show_hotfilms",
+                type:"get",
+                dataType:"json",
+                success:function(data){
+                	console.log("正在上映电影信息列表：");
+                    console.log(data);
+                    let numOfHotFilms = data.length;    //获取正在热映的电影个数
+                    let html = "";  					//动态改变的影片显示html
+                    //更改正在热映的影片数
+                    $("#panel-title-text-red").text("正在热映("+numOfHotFilms+")部");
+                    //遍历得到html
+                    $.each(data, function (key, value) {
+                        let filmName = value.film_name;
+                        let score = value.film_score.toString().split(".");
+                        let leftScore = score[0];
+                        let rightScore = score[1];
+                        if (rightScore===undefined)
+                        	rightScore = "0";
+                        html += "<dd>" +
+                                        "<div class='movie-item'>" +
+                                                "<a href='ClientPage_FilmDetails.html?filmName="+filmName+"' target='_blank'>"+
+                                                    "<div class='movie-poster'>"+
+                                                        "<img alt='"+filmName+"' src='../src/film_cover/"+filmName+".jpg'/>"+
+                                                        "<div class='movie-overlay movie-overlay-bg'>"+
+                                                            "<div class='movie-info'>"+
+                                                                "<div class='movie-score'>"+
+                                                                    "<i class='interger'>"+leftScore+".</i>"+
+                                                                    "<i class='fraction'>"+rightScore+"</i>"+
+                                                                "</div>"+
+                                                                "<div class='movie-title movie-title-padding' title='"+filmName+"'>"+filmName+"</div>"+
+                                                            "</div>"+
+                                                        "</div>"+
+                                                    "</div>"+
+                                                "</a>"+
+                                                "<div class='movie-detail movie-detail-strong movie-sale'>"+
+                                    				"<a href='ClientPage_ChooseDate.html?filmName="+filmName+"' target='_blank' class='active'>购 票</a>"+
+                                				"</div>"+
+                                        "</div>"+
+                                    "</dd>";
+                    });
+                    //显示影片
+                    $("#movie-list-red").append(html);
+                    //获取即将上映的电影信息列表
+                    $.ajax({
+                		url:"ctrl_show_readyfilms",
+                		type:"get",
+                		dataType:"json",
+                		success:function(data){
+                			console.log("即将上映电影信息列表：");
+                   			console.log(data);
+		                    let numOfHotFilms = data.length;    //获取即将上映的电影个数
+		                    let html = "";  					//动态改变的影片显示html
+		                    //更改即将上映的影片数
+		                    $("#panel-title-text-blue").text("即将上映("+numOfHotFilms+")部");
+		                    //遍历得到html
+		                    $.each(data, function (key, value) {
+		                        let filmName = value.film_name;
+		                        let sheltTime = value.shelt_time;
+		                        let score = value.film_score.toString().split(".");;
+		                        let leftScore = score[0];
+		                        let rightScore = score[1];
+		                        html += "<dd>" +
+		                            "<div class='movie-item'>" +
+		                            "<a href='ClientPage_FilmDetails.html?filmName="+filmName+"' target='_blank'>"+
+		                            "<div class='movie-poster'>"+
+		                            "<img alt='"+filmName+"' src='../src/film_cover/"+filmName+".jpg'/>"+
+		                            "<div class='movie-overlay movie-overlay-bg'>"+
+		                            "<div class='movie-info'>"+
+		                            "<div class='movie-score'>"+
+		                            "<i class='interger'>"+leftScore+".</i>"+
+		                            "<i class='fraction'>"+rightScore+"</i>"+
+		                            "</div>"+
+		                            "<div class='movie-title movie-title-padding' title='"+filmName+"'>"+filmName+"</div>"+
+		                            "</div>"+
+		                            "</div>"+
+		                            "</div>"+
+		                            "</a>"+
+		                            "<div class='movie-detail movie-detail-strong'>"+sheltTime+"上映</div>"+
+		                            "</div>"+
+		                            "</dd>";
+		                  	});
+                    		//显示影片
+                    		$("#movie-list-blue").append(html);
+			     	},
+			     	error:function (error) {
+			        	alert("----ajax请求回调出错函数！----\n"+error.responseText);
+			     	}
+            	});
+                },
+                error:function (error) {
+                    alert("----ajax请求回调出错函数！----\n"+error.responseText);
+                }
+            });
+        });
+        //点击查看所有正在上映的电影列表
+        function moreHotMovies() {
+            $(window).attr("location", "ClientPage_ShowAllSheltedFilms.html");
+        }
+        //点击查看所有即将上映的电影列表
+        function moreWaitingMovies(){
+            $(window).attr("location", "ClientPage_ShowAllFilmsWillBeShelted.html");
+        }
+    </script>
+</head>
+<!-- 网页主体 -->
+<body>
+	<!-- 基本div -->
+	<div id="basic">
+		<!-- 网页头部 -->
+		<div class="header">
+			<div class="header-inner">
+				<!-- 网页头部logo -->
+				<a href="ClientPage_Index.html" class="logo"></a>
+				<!-- 网页头部导航栏 -->
+				<div class="nav">
+					<ul class="navbar">
+						<li><a href="ClientPage_Index.html" class="active">首页</a></li>
+						<li><a href="#" class="non-active">电影</a></li>
+						<li><a href="ClientPage_FilmRank.html" class="non-active">榜单</a></li>
+					</ul>
+				</div>
+				<!-- 网页头部用户信息 -->
+				<div class="user-info">
+					<div class="user-avatar">
+						<img src="../src/user_avatar/avatar_non.png"> <span
+							class="caret"></span>
+						<ul class="user-menu-unlogin">
+							<li><a href="ClientPage_Login.html">登录</a></li>
+						</ul>
+						<ul class="user-menu-login">
+							<li class="text"><a
+								href="ClientPage_PersonalInfo.html?personalInfoType=2">我的订单</a></li>
+							<li class="text"><a
+								href="ClientPage_PersonalInfo.html?personalInfoType=1">基本信息</a></li>
+							<li class="text"><a href="javascript:void(0);"
+								onclick="logout()">退出登录</a></li>
+						</ul>
+					</div>
+				</div>
+				<!-- 网页头部查询 -->
+				<form target="_blank" class="search-form">
+					<input id="kw" class="search" type="search" maxlength="32"
+						placeholder="找影视剧" autocomplete="off"> <input
+						class="submit" type="button" onclick="searchFilm()">
+				</form>
+			</div>
+		</div>
+		<!-- 内容显示区域 -->
+		<div class="container">
+			<div class="movie-grid">
+				<div class="panel">
+					<div class="panel-header">
+						<span class="panel-title"> <span
+							class="panel-title-text-red" id="panel-title-text-red">正在热映（0部）</span>
+							<span class="panel-title-text-red panel-title-text-more"
+							id="panel-title-text-red-more" onclick="moreHotMovies()">更多></span>
+						</span>
+					</div>
+					<div class="panel-content">
+						<dl class="movie-list" id="movie-list-red">
+							<!-- 动态加载 -->
+						</dl>
+					</div>
+				</div>
+				<div class="panel">
+					<div class="panel-header">
+						<span class="panel-title"> <span
+							class="panel-title-text-blue" id="panel-title-text-blue">即将上映（0部）</span>
+							<span class="panel-title-text-blue panel-title-text-more"
+							id="panel-title-text-blue-more" onclick="moreWaitingMovies()">更多></span>
+						</span>
+					</div>
+					<div class="panel-content">
+						<dl class="movie-list" id="movie-list-blue">
+							<!-- 动态加载 -->
+						</dl>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 页脚 -->
+		<div id="footer">
+			<p>313文化传媒有限公司</p>
+			<p>联系我们：1479351399@qq.com</p>
+			<p>Copyright © 2019 313电影 All Rights Reserved.</p>
+		</div>
+	</div>
+</body>
+</html>

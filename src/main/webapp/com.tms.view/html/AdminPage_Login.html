@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>影院业务管理系统</title>
+<!-- 网页图标 -->
+<link rel="icon" href="../src/admin_icon.png" sizes="32x32">
+<!-- 网页信息 -->
+<meta charset="UTF-8">
+<!-- 编码设置 -->
+<meta http-equiv="keywords" content="购票,电影,313">
+<meta http-equiv="description" content="313电影-一网打尽好电影">
+<!-- 内部css -->
+<style type="text/css">
+body {
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+	height: 100%;
+	background: url("../src/admin_login.png") no-repeat fixed;
+}
+
+div {
+	margin: 0px;
+	padding: 0px;
+	border: none;
+}
+
+p {
+	margin: 0px;
+	padding: 0px;
+}
+
+fieldset {
+	margin-left: 7px;
+	padding: 10px;
+	width: 360px;
+	height: 360px;
+}
+
+legend {
+	margin: 0px;
+	padding: 10px;
+	font-size: 40px;
+	font-family: 微软雅黑;
+}
+
+input {
+	margin: 0px;
+	padding: 0px;
+}
+/*标题div*/
+#header {
+	width: 100%;
+	height: 100px;
+	background-color: #0083cb; /*背景颜色，最后一位为透明度*/
+	color: white; /*字体颜色*/
+}
+/*标题文字*/
+#header_title {
+	font-size: 60px;
+	font-weight: bolder;
+	font-family: 微软雅黑;
+	text-align: left;
+	margin-left: 200px;
+	line-height: 100px; /*行高与父元素值相同，使该元素垂直居中*/
+}
+/*主体div*/
+#body {
+	width: 100%;
+	height: 400px;
+	text-align: center;
+}
+/*表格区域*/
+#loginForm {
+	width: 400px;
+	height: 400px;
+	padding: 30px;
+	border: none;
+	text-align: center;
+	margin-left: 725px;
+	margin-top: 100px;
+	background-color: rgba(255, 255, 255, 0.7);
+	font-size: 25px;
+	font-family: 微软雅黑;
+	border-radius: 10px; /*圆角边框*/
+	box-shadow: 2px 2px 4px 2px #555; /*阴影*/
+}
+/*提交按钮*/
+#submit {
+	width: 300px;
+	height: 50px;
+	margin-top: 30px;
+	font-size: 30px;
+	font-family: 微软雅黑, serif;
+	line-height: 40px;
+	border-radius: 10px;
+	cursor: pointer;
+	background-color: #0083cb;
+	border: none;
+	color: white;
+	outline: none;
+}
+/*账号密码输入框*/
+.editer {
+	width: 300px;
+	height: 50px;
+	font-size: 20px;
+	font-family: 微软雅黑, fantasy;
+	margin: 10px;
+	border-radius: 10px;
+	outline: none;
+}
+</style>
+<!-- js引入 -->
+<script type="text/javascript" src="../js/jquery-3.4.1.js"></script>
+<!-- 内部js -->
+<script type="text/javascript">
+    		//获取账户信息像后端发送数据进行登录验证
+            function validator() {
+                let uname = $("#admin_name").val();
+                let passwd = $("#admin_password").val();
+                if(uname==null || uname===""){
+                    alert("用户名不能为空！");
+                    $("#admin_name").focus();
+                } else if (passwd == null || passwd === "") {
+                    alert("密码不能为空！");
+                    $("#admin_password").focus();
+                } else if (passwd.length != 6){
+                    alert("密码必须为6位！");
+                    $("#admin_password").focus();
+                }
+                else {
+                    $.ajax({
+                        url:"admin_login",
+                        type: "post",
+                        data:{
+                            admin_name:uname,
+                            admin_password:passwd
+                        },
+                        dataType: "json",
+                        success: function (data) {
+                        	console.log("登陆验证结果：");
+                            console.log(data);
+                            let result = data.toString();
+                            if (result==="1"){
+                                $(window).attr("location", "AdminPage_Frame&Index.html");
+                            }else if(result==="2"){
+                                alert("用户名错误！");
+                                $("#user_number").focus();
+                            }else if(result==="3"){
+                                alert("密码错误！");
+                                $("#passwd").focus();
+                            }else{
+                                alert("校验结果出错！");
+                            }
+                        },
+                        error: function (error) {
+                            alert("----ajax请求回调出错函数！----\n"+error.responseText);
+                        }
+                    });
+                }
+            }
+    </script>
+</head>
+<body>
+	<div id="header">
+		<p id="header_title">影院业务管理系统</p>
+	</div>
+	<div id="body">
+		<form id="loginForm">
+			<fieldset>
+				<legend>请登录</legend>
+				<input class="editer" type="text" name="admin_name" id="admin_name"
+					placeholder=" 用户名" /><br> <input class="editer"
+					type="password" name="admin_password" id="admin_password"
+					placeholder=" 密码" /><br> <input id="submit" type="button"
+					value="登录" onclick="validator()" />
+			</fieldset>
+		</form>
+	</div>
+</body>
+</html>

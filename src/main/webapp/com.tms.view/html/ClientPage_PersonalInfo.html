@@ -1,0 +1,634 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>313电影-一网打尽好电影</title>
+<!-- 网页图标 -->
+<link rel="icon" href="../src/logo.png" sizes="32x32">
+<!-- 网页信息 -->
+<meta charset="UTF-8">
+<!-- 编码设置 -->
+<meta http-equiv="keywords" content="购票,电影,313">
+<meta http-equiv="description" content="313电影-一网打尽好电影">
+<!-- css文件引入 -->
+<link rel="stylesheet" type="text/css" href="../css/frame.css">
+<!-- 内部css -->
+<style type="text/css">
+#basic {
+	width: 100%;
+	height: 1000px; /*整个页面高度----------------------*/
+	border: none;
+}
+
+.container {
+	width: 60%;
+	height: 880px; /*页面内容高度（其中header占80px）----------------------*/
+	padding-top: 150px;
+	margin: 0 auto;
+}
+/*左边*/
+.container h1 {
+	margin-top: 40px;
+	margin-bottom: 30px;
+	font-size: 22px;
+	color: #222;
+	font-weight: 400;
+}
+
+.container img {
+	border-style: none
+}
+
+.container p {
+	font-size: 16px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 80px;
+	text-align: right;
+	color: #333;
+	padding: 0;
+	margin: 0;
+}
+
+.container span {
+	color: #666;
+	line-height: 30px;
+	font-size: 14px;
+}
+
+.container div {
+	display: block;
+}
+
+.container a {
+	text-decoration: none;
+}
+
+.container #l {
+	position: absolute;
+	top: 150px;
+	bottom: 0;
+	width: 200px;
+	background-color: #f4f3f4;
+	text-align: center;
+	border: 1px solid #e1e1e1;
+}
+
+.container #l .default {
+	display: block;
+	font-weight: 400;
+	color: #333;
+	height: 40px;
+	width: 202px;
+	margin-left: -1px;
+	line-height: 40px;
+	font-size: 18px;
+}
+
+.container #l .active {
+	display: block;
+	font-weight: 400;
+	background-color: #e3282d;
+	color: white;
+	height: 40px;
+	width: 202px;
+	margin-left: -1px;
+	line-height: 40px;
+	font-size: 18px;
+}
+
+/*右边订单*/
+.container #r1 {
+	display: none;
+	float: left;
+	margin-left: 200px;
+	padding-left: 40px;
+	width: 922px;
+	min-height: 850px;
+	border: 1px solid #e1e1e1;
+	overflow: auto;
+	height: 500px;
+}
+
+.container #rtop1 {
+	padding: 26px 0;
+	color: #ec443f;
+	font-size: 18px;
+	border-bottom: 1px solid #e1e1e1;
+	margin: 0 40px 30px 0;
+}
+
+.container .ui-select select {
+	padding: 0 20px 0 10px;
+	width: 100%;
+	border: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+
+.container .order-box {
+	border: 1px solid #e5e5e5;
+	margin: 0 40px 30px 0;
+}
+
+.container .order-box .order-header {
+	background-color: #f7f7f7;
+	font-size: 14px;
+	padding: 10px 20px;
+}
+
+.container .order-box .order-header .order-date {
+	color: #333;
+	display: inline-block;
+	margin-right: 30px;
+}
+
+.container .order-box .order-header .order-id {
+	color: #999;
+}
+
+.container .order-body {
+	padding: 10px 20px;
+}
+
+.container .order-box .order-body .poster {
+	border: 2px solid #fff;
+	-webkit-box-shadow: 0 1px 2px 0 hsla(0, 0%, 53%, .5);
+	box-shadow: 0 1px 2px 0 hsla(0, 0%, 53%, .5);
+	margin-right: 11px;
+	font-size: 0;
+}
+
+.container .order-box .order-body .poster img {
+	width: 70px;
+	height: 100px;
+}
+
+.container .order-content {
+	width: 50%;
+	height: 84px;
+	padding: 10px 0;
+}
+
+.container .order-box .order-body .hall-ticket {
+	margin-top: 4px;
+	font-size: 12px;
+	color: #999;
+	margin-bottom: 4px;
+}
+
+.container .order-box .order-body .show-time {
+	font-size: 12px;
+	color: #f03d37;
+}
+
+.container .order-box .order-body .order-price, .order-box .order-body .order-status
+	{
+	font-size: 14px;
+	color: #333;
+	width: 15%;
+	line-height: 104px;
+}
+
+.container .order-box .order-body .order-status {
+	width: 15%;
+}
+
+.container .order-box .order-body>div {
+	display: inline-block;
+	vertical-align: top;
+}
+/*右边个人信息*/
+.container #r2 {
+	display: none;
+	float: left;
+	margin-left: 200px;
+	padding-left: 40px;
+	width: 922px;
+	min-height: 850px;
+	border: 1px solid #e1e1e1;
+}
+
+.container #rtop2 {
+	padding: 26px 0;
+	color: #ec443f;
+	font-size: 18px;
+	border-bottom: 1px solid #e1e1e1;
+	margin: 0 40px 30px 0;
+}
+
+.container #rL {
+	margin-top: 50px;
+	text-align: center;
+	float: left;
+	color: #333;
+	background: #fff;
+	width: 270px
+}
+
+.container #rL1 {
+	display: block;
+	color: #333;
+	text-align: center;
+}
+
+.container #rL1 img {
+	width: 100px;
+	height: 100px;
+}
+
+.container #fileUpload {
+	margin-top: 50px;
+	font-size: 20px;
+	cursor: pointer;
+	width: 250px;
+	height: 30px;
+}
+
+.container #rL4 {
+	margin-top: 10px;
+	color: #999;
+	font-size: 18px;
+	line-height: 30px;
+}
+
+.container #rR {
+	float: left;
+	width: 495px;
+	margin-left: 58px;
+	display: block;
+	margin-top: 0;
+}
+
+.container #rR1 {
+	margin: 0 0 20px 0;
+	color: #666;
+	position: relative;
+	padding-left: 90px;
+	height: 30px;
+	line-height: 30px;
+	font-size: 14px;
+}
+
+.container #rR2 {
+	color: #666;
+	position: relative;
+	margin: 20px 0;
+	padding-left: 90px;
+	height: 30px;
+	line-height: 30px;
+	font-size: 14px;
+	display: block;
+}
+
+.container #rR3 {
+	color: #666;
+	position: relative;
+	margin: 20px 0;
+	padding-left: 90px;
+	height: 30px;
+	line-height: 30px;
+	font-size: 14px;
+}
+
+.container #rR3 span {
+	float: left;
+	margin-right: 10px;
+}
+
+.container #rR3 span div {
+	float: left;
+}
+
+.container #nc {
+	width: 240px;
+	font-size: 12px;
+	height: 30px;
+	padding-left: 10px;
+	overflow: visible;
+	margin: 0;
+}
+
+.container #ok {
+	margin: 70px 0 0 130px;
+	color: #333;
+	background: #e6e6e6;
+	width: 100px;
+	height: 50px;
+	border-radius: 10px;
+	border: none;
+	cursor: pointer;
+	outline: none;
+}
+</style>
+<!-- js文件引入 -->
+<script type="text/javascript" src="../js/jquery-3.4.1.js"></script>
+<script type="text/javascript" src="../js/frame.js"></script>
+<script type="text/javascript" src="../js/mylib.js"></script>
+<!-- 内部js -->
+<script type="text/javascript">
+	let user_number = "";
+	$(document).ready(function() {
+		//首先获取到当前页面的地址栏信息,获取访问哪个界面
+		let personalInfoType = getUrlParam("personalInfoType");
+		console.log("个人信息类型：");
+		console.log(personalInfoType);
+		//获取当前登录的用户名
+		$.ajax({
+			url : "ctrl_isLogin",
+			type : "get",
+			dataType : "json",
+			async : "false",
+			success : function(data) {
+				console.log("当前登录用户名:");
+				console.log(data);
+				user_number = data;
+				//2显示我的订单 1显示基本信息
+				if (personalInfoType === "2") {
+					$(".container #r1").show();
+					$(".container #r2").hide();
+					$("#myinfo").attr("class", "default");
+					$("#myorder").attr("class", "active");
+					//获取用户订单信息
+					$.ajax({
+						url : "ctrl_MyOrder",
+						type : "post",
+						data : {
+							user_number : user_number
+						},
+						dataType : "json",
+						async : false,
+						success : function(data) {
+							console.log("当前登录用户订单信息:");
+							console.log(data);
+							if (data === "" || data === "[]" || data.length === 0) {
+								//该用户没有订单，什么都不做
+							} else {
+								let orderhtml = "";
+								$.each(data, function(key, value) {
+									//订单编号
+									let id = value.id;
+									//电影名
+									let film_name = value.film_name;
+									//电影场次
+									let film_scene = value.film_scence;
+									//开场时间
+									let film_playtime = film_scene.split("/")[0];
+									//影厅
+									let film_playroom = film_scene.split("/")[1];
+									//购买时间
+									let purchase_time = value.purchase_time;
+									//座位号
+									let seat_number = value.seat_number;
+									//获取该电影该场次票价
+									let film_price = 0;
+									$.ajax({
+										url : "ctrl_SearchFilm_Price",
+										type : "post",
+										data : {
+											film_name : film_name,
+											film_playtime : film_playtime,
+											film_playroom : film_playroom
+										},
+										dataType : "json",
+										async : false, //此处为bool值，不是字符串
+										success : function(data) {
+											console.log("场次票价:");
+											console.log(data);
+											film_price = parseFloat(data);
+										},
+										error : function(error) {
+											alert("----ajax请求回调出错函数！----\n" + error.responseText);
+										}
+									});
+									//生成订单信息
+									orderhtml += "<div class='order-box'>" +
+										"<div class='order-header'>" +
+										"<span class='order-date'>" + purchase_time + "</span>" +
+										"<span class='order-id'>313电影订单号:" + id + "</span>" +
+										"</div>" +
+										"<div class='order-body'>" +
+										"<div class='poster'>" +
+										"<img src='../src/film_cover/" + film_name + ".jpg'>" +
+										"</div>" +
+										"<div class='order-content'>" +
+										"<div class='movie-name'>《" + film_name + "》</div>" +
+										"<div class='hall-ticket'>" +
+										"<span>" + film_playroom + "号厅</span>" +
+										"<span>" + seat_number.split("-")[0] + "排" + seat_number.split("-")[1] + "座</span>" +
+										"</div>" +
+										"<div class='show-time'>" + film_playtime + "</div>" +
+										"</div>" +
+										"<div class='order-price'>￥" + film_price + "</div>" +
+										"<div class='order-status'>已支付</div>" +
+										"</div>" +
+										"</div>";
+								});
+								$("#r1").append(orderhtml);
+							}
+						},
+						error : function(error) {
+							alert("----ajax请求回调出错函数！----\n" + error.responseText);
+						}
+					});
+				} else if (personalInfoType === "1") {
+					$(".container #r1").hide();
+					$(".container #r2").show();
+					$("#myinfo").attr("class", "active");
+					$("#myorder").attr("class", "default");
+					console.log(data);
+					//获取用户信息设置初值
+					$.ajax({
+						url : "admin_get_bynumber",
+						type : "post",
+						data : {
+							user_number : data
+						},
+						dataType : "json",
+						async : false,
+						success : function(data) {
+							console.log("指定用户信息：");
+							console.log(data);
+							if (data === "0") {
+								alert("没有该用户！");
+								return;
+							}
+							//设置用户照片
+							$("#image").attr("src", "../src/user_avatar/" + data.user_number + ".png");
+							//设置用户名
+							$("#nc").attr("value", data.user_name);
+							//设置性别
+							if (data.user_sex === "" || data.user_sex === undefined || data.user_sex === "男") {
+							} else {
+								$("#man").attr("checked", "unchecked");
+								$("#woman").attr("checked", "checked");
+							}
+							//设置生日
+							let birthday = data.user_birthday;
+							let year = birthday.substr(0, 4);
+							let month = birthday.substr(5, 2);
+							let day = birthday.substr(8, 2);
+							let todate = year + "-" + month + "-" + day;
+							$("#birthday").val(todate);
+						},
+						error : function(error) {
+							alert("----ajax请求回调出错函数！----\n" + error.responseText);
+						}
+					});
+				} else {
+					alert("访问界面类型出错！");
+					return;
+				}
+			},
+			error : function(error) {
+				alert("----ajax请求回调出错函数！----\n" + error.responseText);
+			}
+		});
+	});
+	function changeUserInfo() {
+		let user_name = $("#nc").val();
+		let user_sex = $("input[name='sex']:checked").val();
+		let user_birthday = $("#birthday").val();
+		//字符串型数据直接通过请求参数传递
+		let url = "ctrl_change_userinfo?" +
+			"user_number=" + user_number +
+			"&user_name=" + user_name +
+			"&user_sex=" + user_sex +
+			"&user_birthday=" + user_birthday;
+		//判断文件类型
+		let user_avatar_fakepath = $("#fileUpload").val();
+		if (user_avatar_fakepath !== "" && !user_avatar_fakepath.endsWith(".png")) {
+			alert("图片只支持png格式！");
+			return;
+		}
+		//使用formdata封装文件用ajax传送
+		let user_avatar = $("#fileUpload").get(0).files[0];
+		let formdata = new FormData();
+		formdata.append("user_avatar", user_avatar);
+		$.ajax({
+			url : url,
+			type : "post",
+			data : formdata,
+			processData : false,
+			contentType : false,
+			cache : false,
+			dataType : "json",
+			async : false,
+			success : function(data) {
+				console.log("更改信息结果：");
+				console.log(data);
+				if (data === "1") {
+					alert("更改成功！");
+					window.location.reload();
+				}
+			},
+			error : function(error) {
+				alert("----ajax请求回调出错函数！----\n" + error.responseText);
+			}
+		});
+	}
+	function checkl1() {
+		$(".container #r2").show();
+		$(".container #r1").hide();
+		$("#myinfo").attr("class", "active");
+		$("#myorder").attr("class", "default");
+		$(window).attr("location", "ClientPage_PersonalInfo.html?personalInfoType=1");
+	}
+	function checkl2() {
+		$(".container #r2").hide();
+		$(".container #r1").show();
+		$("#myinfo").attr("class", "default");
+		$("#myorder").attr("class", "active");
+		$(window).attr("location", "ClientPage_PersonalInfo.html?personalInfoType=2");
+	}
+</script>
+</head>
+<!-- 网页主体 -->
+<body>
+	<!-- 基本div -->
+	<div id="basic">
+		<!-- 网页头部 -->
+		<div class="header">
+			<div class="header-inner">
+				<!-- 网页头部logo -->
+				<a href="" class="logo"></a>
+				<!-- 网页头部导航栏 -->
+				<div class="nav">
+					<ul class="navbar">
+						<li><a href="ClientPage_Index.html" class="non-active">首页</a></li>
+						<li><a href="#" class="non-active">电影</a></li>
+						<li><a href="ClientPage_FilmRank.html" class="non-active">榜单</a></li>
+					</ul>
+				</div>
+				<!-- 网页头部用户信息 -->
+				<div class="user-info">
+					<div class="user-avatar">
+						<img src="../src/user_avatar/avatar_non.png"> <span
+							class="caret"></span>
+						<ul class="user-menu-unlogin">
+							<li><a href="ClientPage_Login.html">登录</a></li>
+						</ul>
+						<ul class="user-menu-login">
+							<li class="text"><a
+								href="ClientPage_PersonalInfo.html?personalInfoType=2">我的订单</a></li>
+							<li class="text"><a
+								href="ClientPage_PersonalInfo.html?personalInfoType=1">基本信息</a></li>
+							<li class="text"><a href="javascript:void(0);"
+								onclick="logout()">退出登录</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 内容显示区域 -->
+		<div class="container">
+			<div id="l">
+				<h1>个人中心</h1>
+				<a href="javascript:void(0);" id="myorder" class="default"
+					onclick="checkl2()">我的订单</a> <a href="javascript:void(0);"
+					id="myinfo" class="default" onclick="checkl1()">基本信息</a>
+			</div>
+			<div id="r1">
+				<div id="rtop1">我的订单</div>
+				<!-- 动态生成 -->
+			</div>
+			<div id="r2">
+				<div id="rtop2">基本信息</div>
+				<div id="rL">
+					<div id="rL1">
+						<img id="image" src="../src/user_avatar/avatar_non.png">
+						<input type="file" id="fileUpload" name="user_avatar">
+						<div id="rL4">支持PNG格式的文件，且文件须小于1M</div>
+					</div>
+				</div>
+				<form id="rR">
+					<div id="rR1">
+						<p>昵称:</p>
+						<span><input id="nc" placeholder="2-20个字符" value="默认"></span>
+					</div>
+					<div id="rR2">
+						<p>性别:</p>
+						<input type="radio" name="sex" id="nan" value="男"
+							checked="checked">&nbsp;男&nbsp;&nbsp; <input type="radio"
+							name="sex" id="woman" value="女">&nbsp;女&nbsp;&nbsp;
+					</div>
+					<div id="rR3">
+						<p>生日:</p>
+						<input type="date" id="birthday">
+					</div>
+					<input id="ok" type="button" value="保存" onclick="changeUserInfo()">
+				</form>
+			</div>
+		</div>
+		<!-- 页脚 -->
+		<div id="footer">
+			<p>313文化传媒有限公司</p>
+			<p>联系我们：1479351399@qq.com</p>
+			<p>Copyright © 2019 313电影 All Rights Reserved.</p>
+		</div>
+	</div>
+</body>
+</html>

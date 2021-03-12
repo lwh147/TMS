@@ -1,0 +1,149 @@
+/*
+该css文件控制管理员系统的页面框架样式
+ */
+body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+}
+
+div, p, a, ul, li {
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	text-decoration: none;
+}
+
+ul {
+	padding-left: 10px;
+	list-style-type: none;
+}
+
+li {
+	margin-top: 10px;
+	font-size: 20px;
+}
+/*
+承载整个页面
+ */
+#basic {
+	width: 100%;
+	height: 1000px; /*整个页面高度----------------------*/
+	border: none;
+}
+/*
+网页标题
+ */
+#head {
+	width: 100%;
+	height: 80px;
+	background-color: #0083cb;
+	position: fixed;
+}
+
+#titleText {
+	width: 400px;
+	height: 80px;
+	text-align: left;
+	margin-left: 80px;
+	line-height: 80px;
+	font-size: 40px;
+	color: white;
+	float: left;
+}
+
+#headToolBar {
+	width: 400px;
+	height: 80px;
+	float: right;
+	text-align: right;
+	margin-right: 20px;
+	line-height: 80px;
+	font-size: 20px;
+}
+
+#headToolBar a {
+	color: white;
+}
+/*
+网页主题
+ */
+#body {
+	padding-top: 80px;
+	width: 100%;
+	height: 1000px;
+	border-bottom: 1px solid lightgray;
+}
+/*
+导航栏
+ */
+#navBar {
+	width: 9%;
+	height: 100%;
+	float: left;
+	background-color: rgb(250, 250, 250);
+	border-right: 1px solid lightgray;
+	border-bottom: 1px solid lightgray;
+}
+
+#functions li {
+	text-align: center;
+	vertical-align: middle;
+	height: 40px;
+	border: 1px solid lightgray;
+	border-top-left-radius: 20px; /*圆角边框*/
+	border-bottom-left-radius: 20px;
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+#functions .active {
+	background-color: #0083cb;
+}
+
+#functions .active a {
+	color: white;
+	line-height: 40px;
+}
+
+#functions .non-active a {
+	color: black;
+	line-height: 40px;
+}
+
+#functions .non-active a:hover {
+	color: #0083cb;
+}
+/*
+内容
+ */
+#showContainer {
+	width: 90.899%;
+	height: 100%;
+	float: right;
+	background-color: aliceblue;
+	background-image: url("../src/admin_welcome.png");
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	overflow: auto; /*内容溢出时出现滚动条*/
+}
+/*
+页脚
+ */
+#footer {
+	margin-top: 1px;
+	background-color: rgba(0, 0, 0, 0.76);
+	width: 100%;
+	height: 100px; /*页脚高度----------------------*/
+	text-align: center;
+	padding-top: 20px;
+}
+
+#footer p {
+	font-size: 20px;
+	color: gray;
+}

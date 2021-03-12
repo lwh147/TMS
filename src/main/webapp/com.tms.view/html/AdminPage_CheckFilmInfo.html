@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>影院业务管理系统</title>
+<!-- 网页图标 -->
+<link rel="icon" href="../src/admin_icon.png" sizes="32x32">
+<!-- 网页信息 -->
+<meta charset="UTF-8">
+<!-- 编码设置 -->
+<meta http-equiv="keywords" content="购票,电影,313">
+<meta http-equiv="description" content="313电影-一网打尽好电影">
+<!-- css文件引入 -->
+<link rel="stylesheet" type="text/css"
+	href="../css/AdminPage_Frame&Index.css">
+<!-- 内部css -->
+<style type="text/css">
+#showContainer {
+	background: none;
+	text-align: center;
+}
+
+#showContainer form {
+	width: 100%;
+	height: 80px;
+}
+
+.targetuser {
+	margin-top: 30px;
+	font-size: 20px;
+}
+
+#showContainer table {
+	text-align: center;
+	font-size: 20px;
+	width: 95%;
+	margin: 10px auto;
+	border: 1px solid black;
+}
+
+#showContainer table td {
+	border: 1px solid black;
+}
+</style>
+<!-- js引入 -->
+<script type="text/javascript" src="../js/jquery-3.4.1.js"></script>
+<!-- 内部js -->
+<script type="text/javascript">
+    	//首先加载所有影片列表
+        $(document).ready(function loadAllFilm() {
+            $.ajax({
+                url:"admin_film_list",
+                type:"get",
+                dataType:"json",
+                success:function (data) {
+                	console.log("所有电影信息：");
+                    console.log(data);
+                    let html = "<table id='default'>" +
+                        "<tr>" +
+                            "<td>电影名</td>" +
+                            "<td>上架时间</td>" +
+                            "<td>下架时间</td>" +
+                            "<td>电影简介</td>" +
+                            "<td>导演</td>" +
+                            "<td>主演</td>" +
+                            "<td>电影类型</td>" +
+                            "<td>时长(分钟)</td>" +
+                            "<td>评分</td>" +
+                        "</tr>";
+                    $.each(data,function(name,value) {
+                        html = html +
+                            "<tr>" +
+                                "<td>"+value.film_name+"</td>" +
+                                "<td>"+value.shelt_time+"</td>" +
+                                "<td>"+value.unshelt_time+"</td>" +
+                                "<td>"+value.film_info+"</td>" +
+                                "<td>"+value.film_director+"</td>" +
+                                "<td>"+value.starring+"</td>" +
+                                "<td>"+value.film_type+"</td>" +
+                                "<td>"+value.duration+"</td>" +
+                                "<td>"+value.film_score+"</td>" +
+                            "</tr>";
+                    });
+                    html += "</table>";
+                    $("#showContainer").append(html);
+                },
+                error:function (error) {
+                    alert("----ajax请求回调出错函数！----\n"+error.responseText);
+                }
+            });
+        });
+        //查询指定电影电影信息
+        function checkFilmInfo() {
+            let film_name = $("#filmName").val();
+            if (film_name==null || film_name==="" ){
+                alert("请输入电影名进行查找！");
+                $("#filmName").focus();
+                return;
+            }
+            $.ajax({
+                url:"ctrl_SearchFilm",
+                type:"post",
+                data:{
+                    film_name:film_name
+                },
+                dataType:"json",
+                success:function (data) {
+                	console.log("指定电影信息：");
+                    console.log(data);
+                    if (data==="0"){
+                        alert("电影不存在!");
+                        return;
+                    }
+                    $("#default").hide();
+                    let html = "<table>" +
+                        "<tr>" +
+                            "<td>电影名</td>" +
+                            "<td>上架时间</td>" +
+                            "<td>下架时间</td>" +
+                            "<td>电影简介</td>" +
+                            "<td>导演</td>" +
+                            "<td>主演</td>" +
+                            "<td>电影类型</td>" +
+                            "<td>时长(分钟)</td>" +
+                            "<td>评分</td>" +
+                        "</tr>";
+                    html = html +
+                            "<tr>" +
+                                "<td>"+data.film_name+"</td>" +
+                                "<td>"+data.shelt_time+"</td>" +
+                                "<td>"+data.unshelt_time+"</td>" +
+                                "<td>"+data.film_info+"</td>" +
+                                "<td>"+data.film_director+"</td>" +
+                                "<td>"+data.starring+"</td>" +
+                                "<td>"+data.film_type+"</td>" +
+                                "<td>"+data.duration+"</td>" +
+                                "<td>"+data.film_score+"</td>" +
+                            "</tr>";
+                    html += "</table>";
+                    $("#showContainer").append(html);
+                },
+                error:function (error) {
+                    alert("----ajax请求回调出错函数！----\n"+error.responseText);
+                }
+            });
+        }
+    </script>
+</head>
+<!-- 网页主体 -->
+<body>
+	<div id="basic">
+		<!-- 网页头部 -->
+		<div id="head">
+			<p id="titleText">影院业务管理系统</p>
+			<div id="headToolBar">
+				<a href="AdminPage_Frame&Index.html">首页</a> &nbsp;&nbsp;<a href="#">您好，Admin！</a>
+				&nbsp;&nbsp;<a href="AdminPage_Login.html">退出</a>
+			</div>
+		</div>
+		<!-- 导航栏 -->
+		<div id="body">
+			<div id="navBar">
+				<ul id="functions">
+					<li class="non-active"><a
+						href="AdminPage_CheckFilmArrangement.html">查看排片信息</a></li>
+					<li class="non-active"><a href="AdminPage_CheckUserInfo.html">查看用户信息</a></li>
+					<li class="active"><a href="AdminPage_CheckFilmInfo.html">查看影片信息</a></li>
+					<li class="non-active"><a href="AdminPage_AddFilm.html">添加影片信息</a></li>
+					<li class="non-active"><a
+						href="AdminPage_AddFilmArrangement.html">添加排片信息</a></li>
+				</ul>
+			</div>
+			<!-- 内容显示区域 -->
+			<div id="showContainer">
+				<form>
+					<span class="targetuser">请输入电影名进行查找：</span> <input type="text"
+						class="targetuser" placeholder=" 电影名" id="filmName"> <input
+						type="button" class="targetuser" value="查找"
+						onclick="checkFilmInfo()">
+				</form>
+			</div>
+		</div>
+		<!-- 页脚 -->
+		<div id="footer">
+			<p>313文化传媒有限公司</p>
+			<p>联系我们：1479351399@qq.com</p>
+			<p>Copyright © 2019 313电影 All Rights Reserved.</p>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,448 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>313电影-一网打尽好电影</title>
+<!-- 网页图标 -->
+<link rel="icon" href="../src/logo.png" sizes="32x32">
+<!-- 网页信息 -->
+<meta charset="UTF-8">
+<!-- 编码设置 -->
+<meta http-equiv="keywords" content="购票,电影,313">
+<meta http-equiv="description" content="313电影-一网打尽好电影">
+<!-- css文件引入 -->
+<link rel="stylesheet" type="text/css" href="../css/frame.css">
+<!-- 内部css -->
+<style type="text/css">
+.container a {
+	text-decoration: none;
+}
+
+.banner {
+	width: 100%;
+	min-width: 1200px;
+	background: #392f59 no-repeat 50%;
+}
+
+.banner .wrapper {
+	width: 1200px;
+	margin: 0 auto;
+	height: 376px;
+	position: relative;
+}
+
+.banner .wrapper .celeInfo-left {
+	width: 300px;
+	float: left;
+	position: relative;
+	top: 70px;
+	overflow: hidden;
+	z-index: 9;
+}
+
+.celeInfo-left .avatar-shadow, .cinema-left .avatar-shadow {
+	position: relative;
+	margin: 0 30px;
+	width: 240px;
+	height: 330px;
+	padding-bottom: 40px;
+}
+
+.celeInfo-left .avatar-shadow .avatar {
+	border: 4px solid #fff;
+	height: 322px;
+	width: 232px;
+}
+
+.movie-ver {
+	position: absolute;
+	top: 4px;
+	left: -2px;
+	font-size: 12px;
+	color: #fff;
+}
+
+.movie-ver i.imax3d {
+	width: 69px;
+	height: 25px;
+}
+
+.banner .wrapper .celeInfo-right {
+	margin-right: 30px;
+	margin-left: 300px;
+	height: 100%
+}
+
+.movie-brief-container {
+	position: absolute;
+	color: #fff;
+	font-size: 14px;
+	z-index: 1;
+	margin-top: 80px
+}
+
+.movie-brief-container .name {
+	width: 900px;
+	margin-top: 0;
+	font-size: 26px;
+	line-height: 32px;
+	font-weight: 700;
+	margin-bottom: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	max-height: 64px;
+}
+
+h3 {
+	display: block;
+	font-size: 1.17em;
+	margin-block-start: 1em;
+	margin-block-end: 1em;
+	margin-inline-start: 0;
+	margin-inline-end: 0;
+	font-weight: bold;
+}
+
+.ellipsis {
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.movie-brief-container ul {
+	width: 250px;
+	list-style: none;
+	padding-left: 0;
+	margin-bottom: 20px;
+}
+
+.banner li, .banner p, .banner ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	line-height: 1;
+}
+
+.movie-brief-container ul li {
+	margin: 12px 0;
+	line-height: 100%;
+}
+
+#pingfen {
+	font-size: 30px;
+	color: #ffc600;
+	height: 30px;
+	line-height: 30px;
+}
+
+.action-buyBtn {
+	position: absolute;
+	bottom: 20px;
+}
+
+.action-buyBtn .btn.buy {
+	margin-top: 10px;
+	width: 250px;
+	height: 40px;
+	font-size: 16px;
+	line-height: 40px;
+	text-align: center;
+	border-radius: 2px;
+	padding: 0;
+}
+
+.btn {
+	display: inline-block;
+	padding: 2px 15px;
+	line-height: 25px;
+	font-size: 15px;
+	color: #fff;
+	background-color: #df2d2d;
+}
+
+.module .mod-title h3 {
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+	font-weight: 400;
+	font-size: 18px;
+	color: #333;
+	line-height: 18px;
+}
+
+.celebrity-container .celebrity .portrait img {
+	width: 128px;
+	height: 170px;
+}
+
+.celebrity-container .celebrity .name {
+	margin-top: 8px;
+	line-height: 1.2;
+	color: #333;
+}
+
+.header .nav .navbar {
+	float: left;
+	width: 210px;
+	height: 80px;
+	margin: 0 auto;
+}
+
+#basic {
+	width: 100%;
+	height: 1100px; /*整个页面高度----------------------*/
+	border: none;
+}
+
+.container {
+	width: 1200px;
+	height: 900px; /*页面内容高度（其中header占80px）----------------------*/
+	padding-top: 80px;
+	margin: 0 auto;
+}
+/*
+		页脚
+		 */
+#footer {
+	margin-top: 0;
+	background-color: rgba(0, 0, 0, 0.76);
+	width: 100%;
+	height: 100px; /*页脚高度----------------------*/
+	text-align: center;
+	padding-top: 20px;
+}
+
+#footer p {
+	font-size: 20px;
+	color: gray;
+	margin: 0;
+}
+
+#filmDetails {
+	margin-top: 80px;
+	width: 100%;
+	height: 400px;
+}
+
+.block {
+	height: 30%;
+}
+
+#brief {
+	height: 40%
+}
+
+.detailsTitle {
+	font-weight: bold;
+	font-size: 25px;
+	margin-bottom: 20px;
+}
+
+.detailsText {
+	text-indent: 30px;
+}
+
+p {
+	display: block;
+	margin-block-start: 1em;
+	margin-block-end: 1em;
+	margin-inline-start: 0;
+	margin-inline-end: 0;
+}
+
+h3 {
+	display: block;
+	font-size: 1.17em;
+	margin-block-start: 1em;
+	margin-block-end: 1em;
+	margin-inline-start: 0;
+	margin-inline-end: 0;
+	font-weight: bold;
+}
+
+img {
+	border-style: none;
+}
+
+.movie-brief-container ul {
+	list-style: none;
+	padding-left: 0;
+	margin: 0;
+	display: block;
+	margin-block-start: 1em;
+	margin-block-end: 1em;
+	margin-inline-start: 0;
+	margin-inline-end: 0;
+}
+</style>
+<!-- js文件引入 -->
+<script type="text/javascript" src="../js/jquery-3.4.1.js"></script>
+<script type="text/javascript" src="../js/frame.js"></script>
+<script type="text/javascript" src="../js/mylib.js"></script>
+<!-- 内部js -->
+<script type="text/javascript">
+        $(document).ready(function() {
+    		//首先获取到当前页面的地址栏信息,获取电影名
+    		let filmName = getUrlParam("filmName");
+    		console.log("电影名：");
+    		console.log(filmName);
+            $.ajax({
+                url:"ctrl_SearchFilm",
+                type:"post",
+                data:{
+                    film_name:filmName
+                },
+                dataType:"json",
+                success:function(data){
+                	console.log("指定电影信息：");
+                    console.log(data);
+                    //更改图片信息
+                    $(".avatar").attr("src", "../src/film_cover/"+data.film_name+".jpg");
+                    $(".avatar").attr("alt", data.film_name);
+                    //更改影片名称
+                    $(".name").text(data.film_name);
+                    //更改影片类型
+                    $("#filmType").text(data.film_type);
+                    //更改影片时长
+                    $("#length").text(data.duration+"分钟");
+                    //更改影片上映时间
+                    $("#sheltTime").text(data.shelt_time+"上映");
+                    //更改影片的评分
+                    $("#pingfen").text(data.film_score);
+                    //更改购买按钮的请求地址
+                    $.ajax({
+                		url:"ctrl_ShowFilm_arrange",
+                		type:"post",
+                		data:{
+                    		film_name:filmName
+                		},
+                		dataType:"json",
+                		async:false,
+                		success:function(data){
+                			console.log("指定电影排片信息：");
+                   			console.log(data);
+                   			//没有该影片的排片信息，隐藏购票按钮
+                    		if (data.length===0){
+                    			$(".container .action-buyBtn").css("display", "none");
+                    		}
+                    		//有影片的排片信息，显示购票按钮
+                    		$(".container .action-buyBtn a").attr("href", "ClientPage_ChooseDate.html?filmName="+filmName);     
+                		},
+                		error:function (error) {
+                    		alert("----ajax请求回调出错函数！----\n"+error.responseText);
+                		}
+            		});
+                    //更改影片的简介
+                    $("#briefText").text(data.film_info);
+                    //更改影片的导演
+                    $("#directorText").text(data.film_director);
+                    //更改影片的主演
+                    $("#starText").text(data.starring);
+                },
+                error:function (error) {
+                    alert("----ajax请求回调出错函数！----\n"+error.responseText);
+                }
+            });
+        });
+    </script>
+</head>
+<!-- 网页主体 -->
+<body>
+	<!-- 基本div -->
+	<div id="basic">
+		<!-- 网页头部 -->
+		<div class="header">
+			<div class="header-inner">
+				<!-- 网页头部logo -->
+				<a href="ClientPage_Index.html" class="logo"></a>
+				<!-- 网页头部导航栏 -->
+				<div class="nav">
+					<ul class="navbar">
+						<li><a href="ClientPage_Index.html" class="non-active">首页</a></li>
+						<li><a href="#" class="active">电影</a></li>
+						<li><a href="ClientPage_FilmRank.html" class="non-active">榜单</a></li>
+					</ul>
+				</div>
+				<!-- 网页头部用户信息 -->
+				<div class="user-info">
+					<div class="user-avatar">
+						<img src="../src/user_avatar/avatar_non.png"> <span
+							class="caret"></span>
+						<ul class="user-menu-unlogin">
+							<li><a href="ClientPage_Login.html">登录</a></li>
+						</ul>
+						<ul class="user-menu-login">
+							<li class="text"><a
+								href="ClientPage_PersonalInfo.html?personalInfoType=2">我的订单</a></li>
+							<li class="text"><a
+								href="ClientPage_PersonalInfo.html?personalInfoType=1">基本信息</a></li>
+							<li class="text"><a href="javascript:void(0);"
+								onclick="logout()">退出登录</a></li>
+						</ul>
+					</div>
+				</div>
+				<!-- 网页头部查询 -->
+				<form target="_blank" class="search-form">
+					<input id="kw" class="search" type="search" maxlength="32"
+						placeholder="找影视剧" autocomplete="off"> <input
+						class="submit" type="button" onclick="searchFilm()">
+				</form>
+			</div>
+		</div>
+		<!-- 内容显示区域 -->
+		<div class="container">
+			<div class="banner">
+				<div class="wrapper clearfix">
+					<div class="celeInfo-left">
+						<div class="avatar-shadow">
+							<img class="avatar" src="../src/film_cover/default.png" alt="">
+						</div>
+					</div>
+					<div class="celeInfo-right clearfix">
+						<div class="movie-brief-container">
+							<h3 class="name">无</h3>
+							<ul>
+								<li class="ellipsis" id="filmType">无</li>
+								<li class="ellipsis" id="length">无</li>
+								<li class="ellipsis" id="sheltTime">无</li>
+								<li class="ellipsis">
+									<p class="movie-index-title">用户评分</p>
+								</li>
+								<li class="ellipsis">
+									<p id="pingfen">无</p>
+								</li>
+							</ul>
+						</div>
+						<div class="action-buyBtn">
+							<a class="btn buy" href="ClientPage_ChooseDate.html"
+								target="_blank">立即购票</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="filmDetails">
+				<div id="brief">
+					<div class="detailsTitle">影片简介：</div>
+					<div class="detailsText" id="briefText">许多年前，亚特兰蒂斯女王和人类相知相恋，共同孕育了爱情的结晶——后来被陆地人称为海王的亚瑟·库瑞。</div>
+				</div>
+				<div class="block">
+					<div class="detailsTitle">导演：</div>
+					<div class="detailsText" id="directorText">温子仁</div>
+				</div>
+				<div class="block">
+					<div class="detailsTitle">主演：</div>
+					<div class="detailsText" id="starText">杰森·莫玛 / 艾梅柏·希尔德 /
+						威廉·达福</div>
+				</div>
+			</div>
+		</div>
+		<!-- 页脚 -->
+		<div id="footer">
+			<p>313文化传媒有限公司</p>
+			<p>联系我们：1479351399@qq.com</p>
+			<p>Copyright © 2019 313电影 All Rights Reserved.</p>
+		</div>
+	</div>
+</body>
+</html>

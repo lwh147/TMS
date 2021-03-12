@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>影院业务管理系统</title>
+<!-- 网页图标 -->
+<link rel="icon" href="../src/admin_icon.png" sizes="32x32">
+<!-- 网页信息 -->
+<meta charset="UTF-8">
+<!-- 编码设置 -->
+<meta http-equiv="keywords" content="购票,电影,313">
+<meta http-equiv="description" content="313电影-一网打尽好电影">
+<!-- css文件引入 -->
+<link rel="stylesheet" type="text/css"
+	href="../css/AdminPage_Frame&Index.css">
+<!-- 内部css -->
+<style type="text/css">
+#showContainer {
+	background: none;
+	text-align: center;
+}
+
+#showContainer form {
+	width: 100%;
+	height: 90%;
+	padding-top: 40px;
+}
+
+.targetuser {
+	margin-top: 30px;
+	font-size: 20px;
+}
+
+#showContainer table {
+	text-align: center;
+	font-size: 20px;
+	width: 40%;
+	margin: 10px auto;
+	border: 1px solid black;
+}
+
+#film_cover {
+	width: 250px;
+}
+
+#button {
+	width: 200px;
+	height: 50px;
+}
+</style>
+<!-- js引入 -->
+<script type="text/javascript" src="../js/jquery-3.4.1.js"></script>
+<!-- 内部js -->
+<script type="text/javascript">
+    	//添加影片
+        function addFilm() {
+        	//判断文件类型
+            let film_cover_fakepath = $("#film_cover").val();
+            if (film_cover_fakepath!=="" && !film_cover_fakepath.endsWith(".jpg")){
+            	alert("图片只支持jpg格式！");
+            	return;
+            }
+        	let film_name = $("#film_name").val();
+            let shelt_time = $("#shelt_time").val();
+            let unshelt_time = $("#unshelt_time").val();
+            let film_info = $("#film_info").val();
+            let starring = $("#starring").val();
+            let film_type = $("#film_type").val();
+            let duration = $("#duration").val();
+            let film_score = $("#film_score").val();
+            let film_director = $("#film_director").val();
+            //保存文件
+            let film_cover = $("#film_cover").get(0).files[0];
+            //封装文件的FormData数据，通过ajax传送给后端
+            //console.log()不能直接输出formdata数据类型，需要通过formdata的get（key）方法
+            let formdata = new FormData();
+            formdata.append("film_cover", film_cover);
+            //其余字符串信息做为请求参数放到请求url后面
+            let url = "admin_add_film?"+
+			          "film_name="+film_name+
+			          "&shelt_time="+shelt_time+
+			          "&unshelt_time="+unshelt_time+
+			          "&film_info="+film_info+
+			          "&starring="+starring+
+			          "&film_type="+film_type+
+			          "&duration="+duration+
+			          "&film_score="+film_score+
+			          "&film_director="+film_director;
+			//发送请求
+        	$.ajax({
+        		url:url,
+        		type:"post",
+        		data:formdata,
+        		//是否对数据进行序列化处理
+        		processData:false,
+        		//是否对数据类型进行转换
+        		contentType:false,
+        		cache:false,
+        		dataType:"json",
+        		async:false,
+        		success:function(data){
+        			console.log("添加结果：")
+   					console.log(data);
+        			if (data==="0"){
+                        alert("电影名出现重复!");
+                        return;
+                    }else{
+                        alert("添加成功!");
+                        $(window).attr("location", "AdminPage_CheckFilmInfo.html");
+                    }
+        		},
+        		error:function (error) {
+                    alert("----ajax请求回调出错函数！----\n"+error.responseText);
+                }
+        	});
+        }
+    </script>
+</head>
+<!-- 网页主体 -->
+<body>
+	<div id="basic">
+		<!-- 网页头部 -->
+		<div id="head">
+			<p id="titleText">影院业务管理系统</p>
+			<div id="headToolBar">
+				<a href="AdminPage_Frame&Index.html">首页</a> &nbsp;&nbsp;<a href="#">您好，Admin！</a>
+				&nbsp;&nbsp;<a href="AdminPage_Login.html">退出</a>
+			</div>
+		</div>
+		<!-- 导航栏 -->
+		<div id="body">
+			<div id="navBar">
+				<ul id="functions">
+					<li class="non-active"><a
+						href="AdminPage_CheckFilmArrangement.html">查看排片信息</a></li>
+					<li class="non-active"><a href="AdminPage_CheckUserInfo.html">查看用户信息</a></li>
+					<li class="non-active"><a href="AdminPage_CheckFilmInfo.html">查看影片信息</a></li>
+					<li class="active"><a href="AdminPage_AddFilm.html">添加影片信息</a></li>
+					<li class="non-active"><a
+						href="AdminPage_AddFilmArrangement.html">添加排片信息</a></li>
+				</ul>
+			</div>
+			<!-- 内容显示区域 -->
+			<div id="showContainer">
+				<form id="form">
+					<span class="targetuser">请输入电影名*：</span> <input type="text"
+						class="targetuser" placeholder=" 电影名" id="film_name"><br>
+					<span class="targetuser">请选择上架时间*：</span> <input type="date"
+						class="targetuser" placeholder=" 上架时间" id="shelt_time"><br>
+					<span class="targetuser">请选择下架时间*：</span> <input type="date"
+						class="targetuser" placeholder=" 下架时间" id="unshelt_time"><br>
+					<span class="targetuser">请输入影片简介：</span> <input type="text"
+						class="targetuser" placeholder=" 简介" id="film_info"><br>
+					<span class="targetuser">请输入影片主演：</span> <input type="text"
+						class="targetuser" placeholder=" 主演(用'/'分割)" id="starring"><br>
+					<span class="targetuser">请输入影片类型：</span> <input type="text"
+						class="targetuser" placeholder=" 类型(用'/'分割)" id="film_type"><br>
+					<span class="targetuser">请输入影片时长*：</span> <input type="text"
+						class="targetuser" placeholder=" 时长(分钟)" id="duration"><br>
+					<span class="targetuser">请输入影片评分：</span> <input type="text"
+						class="targetuser" placeholder=" 评分(满分为10)" id="film_score"><br>
+					<span class="targetuser">请输入影片导演：</span> <input type="text"
+						class="targetuser" placeholder=" 导演(用'/'分割)" id="film_director"><br>
+					<span class="targetuser">请上传影片封面(jpg)：</span> <input type="file"
+						accept=".jpg" id="film_cover" class="targetuser" name="film_cover"><br>
+					<input type="button" id="button" class="targetuser" value="添加"
+						onclick="addFilm()">
+				</form>
+			</div>
+		</div>
+		<!-- 页脚 -->
+		<div id="footer">
+			<p>313文化传媒有限公司</p>
+			<p>联系我们：1479351399@qq.com</p>
+			<p>Copyright © 2019 313电影 All Rights Reserved.</p>
+		</div>
+	</div>
+</body>
+</html>
