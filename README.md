@@ -1,11 +1,11 @@
-# TMS
+# tms
 
-## Detailes
+## 介绍
 
-> Theater business management __*web*__ system
+一个简单的线上影片售票系统
 
-## Framework
+## 软件架构
 
-> __Front end__: html+css+js+jquery+ajax
+前端: html+css+js+jquery+ajax
 
-> __Rear end__: spring+struts2
+后端: spring+struts2
