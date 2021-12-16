@@ -36,7 +36,7 @@ public class DBManagerListener implements ServletContextListener {
 		try {
 
 			Class.forName("com.mysql.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://182.92.106.123:3306/tms?characterEncoding=UTF-8&useSSL=false",
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tms?characterEncoding=UTF-8&useSSL=false",
 					"root", "123456");
 			ServletContext ctx = sce.getServletContext();
 			ctx.setAttribute("DBCon", con);
